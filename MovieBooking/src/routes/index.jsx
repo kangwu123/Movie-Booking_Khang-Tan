@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 // Home Template
 import HomeTemplate from "../pages/HomeTemplate";
 import Home from "../pages/HomeTemplate/Home";
-import MovieList from "../pages/HomeTemplate/MovieDetail";
+import MovieList from "../pages/HomeTemplate/MovieList";
 import MovieDetail from "../pages/HomeTemplate/MovieDetail";
 import TicketBooking from "../pages/HomeTemplate/TicketBooking";
 // Admin Template
@@ -27,7 +27,7 @@ const routes = [
         element: <MovieList />,
         nested: [
           {
-            path: ":maPhim",
+            path: "movie-detail/:maPhim",
             element: <MovieDetail />
           }
         ]
