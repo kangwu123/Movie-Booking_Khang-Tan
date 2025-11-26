@@ -60,8 +60,7 @@ export default function HomeHeader() {
                   <i className="fa-solid fa-house text-2xl group-hover:text-red-400"></i>
                 </div>
                 <span className="text-sm mt-1 group-hover:text-red-400">Home</span>
-                <span
-                  className={({ isActive }) =>
+                <span className={({ isActive }) =>
                     `mt-1 h-0.5 bg-red-400 transition-all duration-300 ${
                       isActive ? 'w-full' : 'w-0 group-hover:w-full'
                     }`
