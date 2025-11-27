@@ -181,7 +181,7 @@ export default function HomeHeader() {
               </NavLink>
             </li>
 
-            {/* Contact Us */}
+            {/* Contact*/}
             <li>
               <NavLink
                 onClick={() => {
