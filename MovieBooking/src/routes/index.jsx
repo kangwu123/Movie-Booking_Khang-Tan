@@ -25,12 +25,10 @@ const routes = [
       {
         path: "movie-list",
         element: <MovieList />,
-        nested: [
-          {
-            path: "movie-detail/:maPhim",
-            element: <MovieDetail />
-          }
-        ]
+      },
+      {
+        path: "movie-detail/:maPhim",
+        element: <MovieDetail />
       },
       {
         path: "buy-ticket",

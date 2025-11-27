@@ -95,7 +95,7 @@ const Home = () => {
         <div key={movie.maBanner} className="item relative group">
           <img
             src={movie.hinhAnh}
-            className="w-full h-135 overflow-hidden object-cover"
+            className="w-full max-h-full object-cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
           <NavLink

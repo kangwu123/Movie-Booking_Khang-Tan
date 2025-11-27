@@ -33,7 +33,7 @@ export default function HomeHeader() {
       <div className="container mx-auto flex justify-between items-center ">
         <NavLink to="/" className="max-md:flex-1">
           <img
-            src="./img/Cinemax_new.png"
+            src="./img/Logo.png"
             alt="CinemaProduction Logo"
             className="w-36 h-auto object-contain hover:opacity-90 transition"
           />
@@ -140,7 +140,7 @@ export default function HomeHeader() {
                 }
               >
                 <div>
-                  <i className="fi fi-rs-ticket text-2xl text-transparent bg-clip-text bg-linear-to-r from-yellow-300 via-yellow-400 to-yellow-500"></i>
+                  <i className="fi fi-rs-ticket text-2xl text-transparent bg-clip-text bg-linear-to-r from-red-500 via-yellow-500 to-green-700"></i>
                 </div>
                 <span className="text-sm mt-1 group-hover:text-red-400">Buy Tickets</span>
                 <span
@@ -171,6 +171,34 @@ export default function HomeHeader() {
                   <i className="fi fi-rs-gift-box-benefits text-2xl group-hover:text-red-400"></i>
                 </div>
                 <span className="text-sm mt-1 group-hover:text-red-400">Promotions</span>
+                <span
+                  className={({ isActive }) =>
+                    `mt-1 h-0.5 bg-red-400 transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`
+                  }
+                ></span>
+              </NavLink>
+            </li>
+
+            {/* Contact Us */}
+            <li>
+              <NavLink
+                onClick={() => {
+                  scrollTo(0, 0);
+                  setIsOpen(false);
+                }}
+                to="*"
+                className={({ isActive }) =>
+                  `group flex flex-col items-center transition-all duration-300 ${
+                    isActive ? 'text-red-400' : 'text-gray-300 hover:text-red-400'
+                  }`
+                }
+              >
+                <div>
+                  <i className="fi fi-ss-phone-call text-2xl group-hover:text-red-400"></i>
+                </div>
+                <span className="text-sm mt-1 group-hover:text-red-400">Contact</span>
                 <span
                   className={({ isActive }) =>
                     `mt-1 h-0.5 bg-red-400 transition-all duration-300 ${
@@ -408,6 +436,35 @@ export default function HomeHeader() {
                   ></span>
                 </NavLink>
               </li>
+
+                {/* CONTACT  */}
+              <li>
+                <NavLink
+                  onClick={() => {
+                    scrollTo(0, 0);
+                    setIsOpen(false);
+                  }}
+                  to="*"
+                  className={({ isActive }) =>
+                    `group flex flex-col items-center transition-all duration-300 ${
+                      isActive ? 'text-red-400' : 'text-gray-300 hover:text-red-400'
+                    }`
+                  }
+                >
+                  <div>
+                    <i className="fi fi-ss-phone-call text-2xl group-hover:text-red-400"></i>
+                  </div>
+                  <span className="text-sm mt-1 group-hover:text-red-400">Contact</span>
+                  <span
+                    className={({ isActive }) =>
+                      `mt-1 h-0.5 bg-red-400 transition-all duration-300 ${
+                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`
+                    }
+                  ></span>
+                </NavLink>
+              </li>
+
             </ul>
           </motion.nav>
         )}
