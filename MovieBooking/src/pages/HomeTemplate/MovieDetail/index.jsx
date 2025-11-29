@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchMovieDetail,fetchCinemaList, fetchCinema, fetchTimeShow } from './slice'
 import { useDispatch, useSelector } from 'react-redux';
 import ListCinema from './ListCinema';
-import Cinema from './cinema';
+import Cinema from './Cinema';
 import TimeShow from './TimeShow';
 
 const MovieDetail = () => {
