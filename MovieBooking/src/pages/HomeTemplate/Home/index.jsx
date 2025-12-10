@@ -72,15 +72,12 @@ const Home = () => {
     return state.movieHomeReducer.dataHome?.dataChainCinema;
   });
 
-  const stateHome = useSelector((state) => state.movieHomeReducer);
   useEffect(() => {
     dispatch(fetchMovieList());
     dispatch(fetchMovieHome());
   }, [dispatch]);
 
-
   const { data, loading } = stateList;
-
 
   if (loading) {
     return (
