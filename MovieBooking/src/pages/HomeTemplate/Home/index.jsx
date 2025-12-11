@@ -9,10 +9,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovieList } from './../MovieList/slice';
 import { fetchMovieHome } from './slice';
-import Movie from '../MovieList/movie';
+
+import MovieSlider from './MovieSlider';
+import Trailer from '../MovieList/Trailer';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('now');
+  const [openTrailerModal, setOpenTrailerModal] = useState(false);
+  const [trailerUrl, setTrailerUrl] = useState("");
   const carouselSlide = {
     dots: true,
     arrows: true,
@@ -111,10 +115,15 @@ const Home = () => {
     );
   }
 
+  const getInformationFromTrailer = (trailerLink) => {
+    setTrailerUrl(trailerLink);
+    setOpenTrailerModal(true);
+  };
+
   const renderNowMovieList = () => {
     return data?.map((movie) => {
       if (movie.hot && movie.dangChieu) {
-        return <Movie key={movie.maPhim} propMovie={movie} />;
+        return <MovieSlider key={movie.maPhim} propMovie={movie} onOpenTrailer={getInformationFromTrailer} />;
       }
     });
   };
@@ -122,7 +131,7 @@ const Home = () => {
   const renderUpComingMovieList = () => {
     return data?.map((movie) => {
       if (!movie.dangChieu) {
-        return <Movie key={movie.maPhim} propMovie={movie} />;
+        return <MovieSlider key={movie.maPhim} propMovie={movie} />;
       }
     });
   };
@@ -331,6 +340,13 @@ const Home = () => {
           </div>
         </Slider>
       </div>
+      {/* MODAL TRAILER */}
+      {openTrailerModal && (
+        <Trailer
+          propTrailer={trailerUrl}
+          onClose={() => setOpenTrailerModal(false)}
+        />
+      )}
       {/* DEAL BANNER */}
       <div className="transition-all duration-300 pb-15">
         <div className="container mx-auto">
@@ -729,6 +745,16 @@ const Home = () => {
           </div>
         )}
       </div>
+
+
+
+      {/* Modal Trailer */}
+      {openTrailerModal && (
+        <Trailer
+          propTrailer={trailerUrl}
+          onClose={() => setOpenTrailerModal(false)}
+        />
+      )}
     </>
   )
 }
