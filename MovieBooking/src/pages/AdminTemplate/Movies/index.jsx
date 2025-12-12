@@ -139,11 +139,11 @@ const Movies = () => {
             )}
 
             <div className="space-y-6">
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <div className="bg-blue-300 p-6 rounded-2xl shadow-lg border border-blue-300">
                     <h2 className="text-2xl font-semibold mb-6 border-b pb-2 text-gray-800">Now Showing Movies</h2>
                     <div className="overflow-x-auto">
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
+                        <table className="min-w-full divide-y divide-blue-300">
+                            <thead className="bg-bule-300">
                                 <tr>
                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                                         Movie ID
@@ -165,18 +165,18 @@ const Movies = () => {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
+                            <tbody className="bg-blue-300 divide-y divide-blue-300">
                                 {renderNowMovieList()}
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <div className="bg-blue-300 p-6 rounded-2xl shadow-lg border border-blue-300">
                     <h2 className="text-2xl font-semibold mb-6 border-b pb-2 text-gray-800">Upcoming Movies</h2>
                     <div className="overflow-x-auto">
                         <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden">
-                            <thead className="bg-gray-100">
+                            <thead className="bg-blue-300">
                                 <tr>
                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                                         Movie ID
@@ -199,7 +199,7 @@ const Movies = () => {
                                 </tr>
                             </thead>
 
-                            <tbody className="bg-white divide-y divide-gray-200">
+                            <tbody className="bg-blue-300 divide-y divide-blue-300">
                                 {renderUpComingMovieList()}
                             </tbody>
                         </table>
