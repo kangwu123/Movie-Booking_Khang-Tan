@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUserLogin } from "../../../store/userSlice";
+import { setUserLogin } from "./userSlice";
 import { userApi } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Lock, User } from "lucide-react";
@@ -39,7 +39,7 @@ export default function Login() {
                 })
             );
 
-            localStorage.setItem("USER_ADMIN", JSON.stringify(res.data.content));
+            localStorage.setItem("USER_CUSTOMER", JSON.stringify(res.data.content));
 
             navigate("/");
         } catch (error) {
