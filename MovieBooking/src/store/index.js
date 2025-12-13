@@ -4,7 +4,7 @@ import movieListReducer from "./../pages/HomeTemplate/MovieList/slice";
 import movieDetailReducer from "./../pages/HomeTemplate/MovieDetail/slice";
 import ticketBookingReducer from "./../pages/HomeTemplate/TicketBooking/slice";
 import cinemaReducer from "./../pages/HomeTemplate/Cinemas/slice"
-import userReducer from "./userSlice";
+import userReducer from "../pages/HomeTemplate/Auth/userSlice";
 // Authentication Login & Register
 import authLoginReducer from "./../pages/AdminTemplate/Auth/slice";
 import userManageReducer from "./../pages/AdminTemplate/Users/slice";

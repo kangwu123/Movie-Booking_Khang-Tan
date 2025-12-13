@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../../../store/userSlice";
+import { logout } from "../../../../pages/HomeTemplate/Auth/userSlice";
 
 export default function HomeHeader() {
   const [isOpen, setIsOpen] = useState(false);
