@@ -38,10 +38,10 @@ const FoodAndDrinkModal = ({ onContinue, onBack, selectedSeats, ticketPrice }) =
             .filter((item) => foodQuantities[item.id] > 0)
             .map((item) => ({ ...item, quantity: foodQuantities[item.id] }));
         onContinue(selectedFoods);
-    };
+    };  
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
             <div className="bg-white text-red-600 rounded-lg p-6 w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-4 text-center">Food & Drinks</h2>
                 <div className="space-y-4 max-h-80 overflow-y-auto">
