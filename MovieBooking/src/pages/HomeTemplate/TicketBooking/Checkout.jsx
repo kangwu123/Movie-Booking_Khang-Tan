@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearSeats, datVe, setFoods } from './slice';
 
 const Checkout = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { bookingDetails } = location.state || {};
     const { userLogin } = useSelector((state) => state.user);
     const [totalDiscount, setTotalDiscount] = useState(0);
@@ -48,6 +50,25 @@ const Checkout = () => {
     };
 
     const finalTotal = ticketTotal + foodTotal - totalDiscount;
+
+    const handlePayNow = () => {
+        const danhSachVe = bookingDetails.selectedSeats.map((s) => ({ maGhe: s.maGhe, giaVe: s.giaVe }));
+        dispatch(datVe({ maLichChieu: bookingDetails.thongTinPhim.maLichChieu, danhSachVe }))
+            .unwrap()
+            .then(() => {
+                navigate('/payment-success', { state: { bookingDetails, finalTotal } });
+            })
+            .catch((err) => {
+                alert('Payment failed: ' + err.message);
+            });
+    };
+
+    const handleChange = () => {
+        navigate(-1);
+        dispatch(clearSeats());
+        dispatch(setFoods([]));
+
+    };
 
     return (
         <div className="max-w-4xl mx-auto p-6">
@@ -130,8 +151,11 @@ const Checkout = () => {
                         </button>
                     </div>
 
-                    <button className="w-full bg-red-600 text-white mt-6 py-3 rounded-md font-bold">
+                    <button onClick={handlePayNow} className="w-full bg-red-600 text-white mt-6 py-3 rounded-md font-bold">
                         Pay Now ({finalTotal.toLocaleString()} VND)
+                    </button>
+                    <button onClick={handleChange} className="w-full bg-gray-500 text-white mt-2 py-2 rounded-md">
+                        Change
                     </button>
                 </div>
             </div>

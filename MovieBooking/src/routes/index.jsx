@@ -50,6 +50,17 @@ const routes = [
           }
         ),
       },
+      {
+        path: "payment-success",
+        element: React.createElement(
+          PrivateRoute,
+          {
+            element: React.createElement(
+              lazy(() => import("../pages/HomeTemplate/TicketBooking/PaymentSuccess"))
+            )
+          }
+        ),
+      },
     ],
   },
 
