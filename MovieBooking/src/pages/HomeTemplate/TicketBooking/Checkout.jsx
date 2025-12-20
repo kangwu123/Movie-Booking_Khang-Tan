@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearSeats, datVe, setFoods } from './slice';
+import { clearSeats, datVe } from './slice';
 
 const Checkout = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { bookingDetails } = location.state || {};
+    const { maLichChieu } = bookingDetails.thongTinPhim;
     const { userLogin } = useSelector((state) => state.user);
     const [totalDiscount, setTotalDiscount] = useState(0);
 
@@ -53,7 +54,7 @@ const Checkout = () => {
 
     const handlePayNow = () => {
         const danhSachVe = bookingDetails.selectedSeats.map((s) => ({ maGhe: s.maGhe, giaVe: s.giaVe }));
-        dispatch(datVe({ maLichChieu: bookingDetails.thongTinPhim.maLichChieu, danhSachVe }))
+        dispatch(datVe({ maLichChieu, danhSachVe }))
             .unwrap()
             .then(() => {
                 navigate('/payment-success', { state: { bookingDetails, finalTotal } });
@@ -63,13 +64,13 @@ const Checkout = () => {
             });
     };
 
-    const handleChange = () => {
-        navigate(-1);
-        dispatch(clearSeats());
-        dispatch(setFoods([]));
-
+    const handleChangeSeats = () => {
+        navigate(`/buy-ticket?maLichChieu=${maLichChieu}`);
     };
-
+    const handleCancel = () => {
+        dispatch(clearSeats());
+        navigate(`/buy-ticket?maLichChieu=${maLichChieu}`);
+    }
     return (
         <div className="max-w-4xl mx-auto p-6">
             <h1 className="text-red-500 text-3xl font-bold mb-6">Review & Payment</h1>
@@ -94,6 +95,11 @@ const Checkout = () => {
                                     <span className="ml-2 text-red-500 font-bold">
                                         {selectedSeats.map((s) => s.tenGhe).join(', ')}
                                     </span>
+                                    <button onClick={handleChangeSeats}
+                                        className="ml-2 text-blue-600 text-xs sm:text-sm font-semibold
+                                        hover:text-indigo-700 duration-300 cursor-pointer">
+                                        Change
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -154,8 +160,8 @@ const Checkout = () => {
                     <button onClick={handlePayNow} className="w-full bg-red-600 text-white mt-6 py-3 rounded-md font-bold">
                         Pay Now ({finalTotal.toLocaleString()} VND)
                     </button>
-                    <button onClick={handleChange} className="w-full bg-gray-500 text-white mt-2 py-2 rounded-md">
-                        Change
+                    <button onClick={handleCancel} className="w-full bg-gray-400 text-white mt-2 py-2 rounded-md">
+                        Cancel
                     </button>
                 </div>
             </div>
