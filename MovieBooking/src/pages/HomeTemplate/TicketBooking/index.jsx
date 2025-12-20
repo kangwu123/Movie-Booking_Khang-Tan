@@ -64,20 +64,8 @@ export default function TicketBooking() {
     };
 
     const handleConfirmBooking = () => {
-        const danhSachVe = bookingDetails.selectedSeats.map((g) => ({
-            maGhe: g.maGhe,
-            giaVe: g.giaVe,
-        }));
-
-        dispatch(datVe({ maLichChieu, danhSachVe }))
-            .unwrap()
-            .then(() => {
-                setShowConfirmModal(false);
-                navigate('/checkout', { state: { bookingDetails } });
-            })
-            .catch((err) => {
-                alert("Đặt vé thất bại: " + err.message);
-            });
+        setShowConfirmModal(false);
+        navigate('/checkout', { state: { bookingDetails } });
     };
 
     return (
@@ -167,7 +155,7 @@ export default function TicketBooking() {
                                 .join(", ")
                             : "Chưa chọn ghế nào"}
                     </p>
-                     {selectedSeats.length > 0 && (
+                    {selectedSeats.length > 0 && (
                         <X
                             className="cursor-pointer text-red-500 hover:text-red-700 mb-2"
                             onClick={() => dispatch(clearSeats())}
