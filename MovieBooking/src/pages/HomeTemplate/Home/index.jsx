@@ -13,6 +13,7 @@ import { fetchMovieDetail } from '../MovieDetail/slice';
 import MovieSlider from './MovieSlider';
 import Trailer from '../MovieList/Trailer';
 import NewBlog from './NewBlog';
+import CinemaBrand from './CinemaBrand';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('now');
@@ -885,6 +886,8 @@ const Home = () => {
       )}
       {/* News and Blogs  */}
       <NewBlog />
+      {/*Cinema Brand*/}
+      <CinemaBrand />
     </>
   )
 }
