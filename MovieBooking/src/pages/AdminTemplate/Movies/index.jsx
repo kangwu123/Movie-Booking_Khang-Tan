@@ -145,7 +145,7 @@ const Movies = () => {
                                         Release Date
                                     </th>
                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
-                                        Showtime
+                                        Schedule
                                     </th>
                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                                         Actions
@@ -178,7 +178,7 @@ const Movies = () => {
                                         Release Date
                                     </th>
                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
-                                        Showtime
+                                        Schedule
                                     </th>
                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                                         Actions

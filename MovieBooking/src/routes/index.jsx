@@ -81,10 +81,6 @@ const routes = [
         element: React.createElement(lazy(() => import("../pages/AdminTemplate/Movies"))),
       },
       {
-        path: "movies/createSchedule",
-        element: React.createElement(lazy(() => import("../pages/AdminTemplate/Movies/ScheduleForm"))),
-      },
-      {
         path: "movies/schedule/:maPhim",
         element: React.createElement(lazy(() => import("../pages/AdminTemplate/Movies/ScheduleForm"))),
       },

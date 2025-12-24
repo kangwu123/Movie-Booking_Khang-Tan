@@ -84,12 +84,6 @@ const AdminHeader = () => {
                                     <span className="nav-label" aria-hidden={collapsed}>Movies List</span>
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink to="/admin/movies/createSchedule" title="Schedule Movie" className={({ isActive }) => `flex items-center p-2 ${isActive ? 'text-blue-400' : 'text-white'}`}>
-                                    <span className="mr-3"><i className="fi fi-rr-calendar-plus"></i></span>
-                                    <span className="nav-label" aria-hidden={collapsed}>Schedule Movie</span>
-                                </NavLink>
-                            </li>
                         </ul>
                     )}
                 </div>

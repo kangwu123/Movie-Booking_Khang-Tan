@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams, useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api';
+import { toast } from 'react-toastify';
 import Upload from './Upload'; // Import the Upload component
 
 const ScheduleForm = () => {
@@ -38,7 +39,7 @@ const ScheduleForm = () => {
             maCumRap: '',
             maRap: '',
             ngayGioChieu: '',
-            giaVe: 75000 || '',
+            giaVe: '',
         },
         validationSchema: Yup.object({
             maHeThongRap: Yup.string().required('Cinema System is required'),
@@ -53,16 +54,23 @@ const ScheduleForm = () => {
                     alert('Vui lòng chọn phim!');
                     return;
                 }
+
+                const [datePart, timePart] = values.ngayGioChieu.split('T');
+                const [year, month, day] = datePart.split('-');
+                const [hours, minutes] = timePart.split(':');
+                const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:00`;
+
                 const payload = {
                     maPhim: movie.maPhim,
-                    ngayChieuGioChieu: new Date(values.ngayGioChieu).toISOString(),
+                    ngayChieuGioChieu: formattedDate,
                     maRap: values.maRap,
                     giaVe: values.giaVe,
                 };
                 await dispatch(createSchedule(payload)).unwrap();
-                navigate('/admin/movies');
+                toast.success('Create Schedule has been successful');
+                setTimeout(() => navigate('/admin/movies'), 5000);
             } catch (err) {
-                console.error('Failed to create schedule:', err);
+                toast.error('Failed to create schedule', { autoClose: 5000 }, err.response?.data?.content || err.message);
             }
         },
     });
@@ -82,31 +90,9 @@ const ScheduleForm = () => {
     }, [values.maHeThongRap, dispatch, setFieldValue]);
 
     useEffect(() => {
-        if (heThongRap?.length > 0) {
-            setFieldValue('maHeThongRap', heThongRap[0].maHeThongRap);
-        }
-    }, [heThongRap, setFieldValue]);
-
-    useEffect(() => {
-        if (cumRap?.length > 0) {
-            setFieldValue('maCumRap', cumRap[0].maCumRap);
-        } else {
-            setFieldValue('maCumRap', '');
-        }
-    }, [cumRap, setFieldValue]);
-
-    useEffect(() => {
         const selectedCluster = cumRap?.find(c => c.maCumRap === values.maCumRap);
         setDanhSachRap(selectedCluster?.danhSachRap || []);
     }, [values.maCumRap, cumRap]);
-
-    useEffect(() => {
-        if (danhSachRap.length > 0) {
-            setFieldValue('maRap', danhSachRap[0].maRap);
-        } else {
-            setFieldValue('maRap', '');
-        }
-    }, [danhSachRap, setFieldValue]);
 
     const handleHeThongChange = (e) => {
         const { value } = e.target;
