@@ -37,7 +37,7 @@ const ScheduleForm = () => {
             maCumRap: '',
             maRap: '',
             ngayGioChieu: '',
-            giaVe: 75000 || '',
+            giaVe: '',
         },
         validationSchema: Yup.object({
             maHeThongRap: Yup.string().required('Cinema System is required'),
@@ -52,9 +52,14 @@ const ScheduleForm = () => {
                     alert('Vui lòng chọn phim!');
                     return;
                 }
+                
+                const [datePart, timePart] = values.ngayGioChieu.split('T');
+                const [year, month, day] = datePart.split('-');
+                const [hours, minutes] = timePart.split(':');
+                const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:00`;
                 const payload = {
                     maPhim: movie.maPhim,
-                    ngayChieuGioChieu: new Date(values.ngayGioChieu).toISOString(),
+                    ngayChieuGioChieu: formattedDate,
                     maRap: values.maRap,
                     giaVe: values.giaVe,
                 };
