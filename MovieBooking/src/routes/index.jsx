@@ -61,6 +61,10 @@ const routes = [
           }
         ),
       },
+      {
+        path: "promotion",
+        element: React.createElement(lazy(() => import("../pages/HomeTemplate/Promotion"))),
+      },
     ],
   },
 
